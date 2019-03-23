@@ -3,3 +3,6 @@
 # Setup tmux
 ln -s -f tmux/.tmux.conf ~/.tmux.conf
 ln -s -f tmux/.tmux.conf.local ~/.tmux.conf.local
+
+# Setup Micro
+ln -s -f micro ~/.config/micro
