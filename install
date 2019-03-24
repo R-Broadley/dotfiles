@@ -1,8 +1,12 @@
 #!/bin/sh
 
+# Get path of repo directory (the one containing this script)
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # Setup tmux
-ln -s -f tmux/.tmux.conf ~/.tmux.conf
-ln -s -f tmux/.tmux.conf.local ~/.tmux.conf.local
+ln -s -f $DIR/tmux/.tmux.conf ~
+ln -s -f $DIR/tmux/.tmux.conf.local ~
 
 # Setup Micro
-ln -s -f micro ~/.config/micro
+rm -r ~/.config/micro
+ln -s $DIR/micro ~/.config
