@@ -21,8 +21,16 @@ mkdir -p $DEIN_DIR
 ln -s $DIR/neovim/dein.vim $DEIN_DIR
 echo "To get neovim up and running open it and run :call dein#install()"
 
+# Setup zsh
+./zsh/zsh_install.py
+
+# Fonts
+mkdir -p ~/.fonts
+rm -rf ~/.fonts/nerd-fonts || true
+ln -s $DIR/fonts/nerd-fonts ~/.fonts/
+
 # Setup Micro
-rm -r ~/.config/micro
+rm -rf ~/.config/micro || true
 ln -s $DIR/micro ~/.config
 
 # Default editorconfig (for any files below users home)

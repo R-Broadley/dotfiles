@@ -1,7 +1,7 @@
-rement   # configs which require it
+# requirement   # configs which require it
 
 zsh             # tmux,
 neovim          # zsh,
-python-neovim   # neovim,
+pynvim          # neovim,
 python3         # neovim,
 editorconfig    # neovim, micro,

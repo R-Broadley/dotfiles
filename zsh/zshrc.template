@@ -1,0 +1,24 @@
+# Plugins
+source {ZSHDEST}/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source {ZSHDEST}/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Distro Details
+DISTRO={DISTRO}
+DISTROFAMILY={DISTROFAMILY}
+
+for directory in {ZSHDEST}/{{config,aliases,functions}}; do
+    if [ -d "$directory" ]; then
+        for file in `find $directory/*.zsh`; do
+                [ -r "$file" ] && [ -f "$file" ] && source "$file";
+        done;
+    fi
+done;
+unset file;
+unset directory;
+
+# Functions
+#fpath=({ZSHDEST}/functions $fpath)
+#source {ZSHDEST}/funcautoloads
+
+# Theme
+source {ZSHDEST}/themes/powerlevel9k/powerlevel9k.zsh-theme
