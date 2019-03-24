@@ -10,3 +10,6 @@ ln -s -f $DIR/tmux/.tmux.conf.local ~
 # Setup Micro
 rm -r ~/.config/micro
 ln -s $DIR/micro ~/.config
+
+# Default editorconfig (for any files below users home)
+ln -s -f $DIR/.editorconfig ~
