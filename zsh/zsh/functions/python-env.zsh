@@ -1,54 +1,41 @@
 #!/bin/zsh
 #
 # Auto activate a python virtualenv when entering the project directory.
-# Installation:
-#   source python-env.zsh
-#
-# Usage:
-#   Function `venvconnect`:
-#       Connect the currently activated virtualenv to the current directory.
-#
-VENV_HOME=$HOME/.virtualenvs
 
-function venvconnect() {
-    if [[ -n $VIRTUAL_ENV ]]; then
-        echo $(basename $VIRTUAL_ENV) > .venv
-    else
-        echo "Activate a virtualenv first"
-    fi
-}
+VENV=".venv"
 
 function venvnew() {
-    if [ -z "$1" ]; then
-        echo "Could not create environment: No environment name specified!"
+    VENV_DIR="$PWD/$VENV"
+    VENV_ACTIVATE="$VENV_DIR/bin/activate"
+    if [ -e $VENV_DIR ]; then
+        echo "Could not create environment: one already exists!"
     else
-        python3 -m venv $VENV_HOME/$1
-        source $VENV_HOME/$1/bin/activate
+        echo "Creating $VENV_DIR"
+        python3 -m venv $VENV_DIR
+        source $VENV_ACTIVATE
         pip install -U pip
-        pip install black pylint
+        pip install black pylint python-language-server pydocstyle
     fi
 }
 
 function venvactivate() {
-    if [ -z "$1" ]; then
-        echo "Could not activate environment: No environment name specified!"
+    VENV_DIR="$PWD/$VENV"
+    VENV_ACTIVATE="$VENV_DIR/bin/activate"
+    if [ -x $VENV_ACTIVATE ]; then
+        echo "Could not activate environment ($VENV_ACTIVATE)!"
     else
-        _VENVPATH=$VENV_HOME/$1
         # Check to see if already activated to avoid redundant activating
-        if [[ "$VIRTUAL_ENV" != "$_VENVPATH" ]]; then
-            _VENV_ACTIVATE="$_VENVPATH/bin/activate"
-            if [ -f $_VENV_ACTIVATE ]; then
-                source $_VENV_ACTIVATE
-            else
-                echo "Could not activate environment $_VENV_PATH"
-            fi
+        if [[ "$VIRTUAL_ENV" != "$VENV_DIR" ]]; then
+            source $VENV_ACTIVATE
         fi
     fi
 }
 
 function _virtualenv_auto_activate() {
-    if [[ -f ".venv" ]]; then
-        venvactivate $(cat .venv)
+    VENV_DIR="$PWD/$VENV"
+    VENV_ACTIVATE="$VENV_DIR/bin/activate"
+    if [[ -f $VENV_ACTIVATE ]]; then
+        venvactivate
     fi
 }
 
