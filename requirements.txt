@@ -1,0 +1,7 @@
+rement   # configs which require it
+
+zsh             # tmux,
+neovim          # zsh,
+python-neovim   # neovim,
+python3         # neovim,
+editorconfig    # neovim, micro,

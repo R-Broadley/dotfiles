@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Update submodules
+git submodule update --init --recursive
+
 # Get path of repo directory (the one containing this script)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
@@ -8,6 +11,15 @@ ln -s -f $DIR/tmux/.tmux.conf ~
 ln -s -f $DIR/tmux/.tmux.conf.local ~
 TMUXX='alias tmuxx="tmux new-session -A -s"'
 grep -q "$TMUXX" ~/.bashrc || echo "$TMUXX" >> ~/.bashrc
+
+# Setup neovim
+mkdir -p ~/.config/nvim
+ln -s -f $DIR/neovim/init.vim ~/.config/nvim/
+DEIN_DIR=~/.local/share/nvim/dein/repos/github.com/Shougo
+rm -rf $DEIN_DIR/dein.vim || true
+mkdir -p $DEIN_DIR
+ln -s $DIR/neovim/dein.vim $DEIN_DIR
+echo "To get neovim up and running open it and run :call dein#install()"
 
 # Setup Micro
 rm -r ~/.config/micro

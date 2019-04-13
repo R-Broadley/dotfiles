@@ -1,3 +1,6 @@
 [submodule "tmux"]
 	path = tmux
 	url = https://github.com/R-Broadley/.tmux.git
+[submodule "neovim/dein.vim"]
+	path = neovim/dein.vim
+	url = https://github.com/Shougo/dein.vim.git

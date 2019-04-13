@@ -1,0 +1,11 @@
+tmux
+zsh
+neovim
+pynvim
+editorconfig
+ranger
+python3
+black
+pylint
+pyls
+pydocstyle
