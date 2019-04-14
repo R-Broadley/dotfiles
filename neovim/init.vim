@@ -21,8 +21,6 @@ if dein#load_state(dein_dir)
   call dein#add('sheerun/vim-polyglot')
   " Editor Config
   call dein#add('editorconfig/editorconfig-vim')
-  " Completion
-  call dein#add('Shougo/deoplete.nvim')
   " Linting
   call dein#add('w0rp/ale')
   " Git
@@ -30,6 +28,10 @@ if dein#load_state(dein_dir)
   call dein#add('tpope/vim-fugitive')
   " For Python
   call dein#add('numirias/semshi', {'on_ft': ['python']})
+  " For Pandoc / Markdown
+  call dein#add('vim-pandoc/vim-pandoc')
+  call dein#add('vim-pandoc/vim-pandoc-syntax')
+  call dein#add('junegunn/goyo.vim')
 
   " Required:
   call dein#end()
@@ -53,6 +55,13 @@ set guioptions=M
 set mouse=a
 set number
 set splitbelow
+set breakindent
+set showbreak=->
+set expandtab
+" Use tabs for make files
+autocmd FileType make setlocal noexpandtab
+" Spelling
+set spell spelllang=en_gb
 
 
 " Set colorscheme
@@ -84,11 +93,15 @@ let g:lightline.subseparator = {
 \}
 
 
-" AutoComplete (deoplete)
-call deoplete#custom#option('auto_complete', v:false)
-let g:deoplete#enable_at_startup = 1
-" tab-complete
-inoremap <expr><tab> pumvisible() ? '\<c-n>' : '\<tab>'
+" Goyo
+let g:goyo_width = 100
+let g:goyo_height = '100%'
+
+
+" Completion
+set complete+=kspell
+inoremap <silent> <C-s> <C-x><C-k>
+inoremap <silent> <S-Tab> <C-x><Tab>
 
 
 " Linting
