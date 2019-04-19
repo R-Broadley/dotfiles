@@ -13,6 +13,15 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
+# Python (includes isort configuration)
+[*.py]
+multi_line_output=3
+line_length=79
+indent=4
+length_sort=false
+include_trailing_comma=True
+force_sort_within_sections=True
+default_section=FIRSTPARTY
 
 # Overrides for specific types
 [Makefile]
