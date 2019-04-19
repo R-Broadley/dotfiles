@@ -23,7 +23,7 @@ def generate_zshrc():
     distrofamily = None
     with open("/etc/os-release") as release_file:
         for line in release_file:
-            if line.startswith("ID"):
+            if line.startswith("ID="):
                 distro = format_id(line.lstrip("ID="))
             if line.startswith("ID_LIKE="):
                 distrofamily = format_id(line.lstrip("ID_LIKE="))
