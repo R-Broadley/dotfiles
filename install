@@ -1,10 +1,26 @@
 #!/bin/bash
 
-# Update submodules
-git submodule update --init --recursive
-
 # Get path of repo directory (the one containing this script)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Update submodules
+cd $DIR && git submodule update --init --recursive
+
+# Functions
+ensure_line_in_file () {
+    grep -qF "$1" "$2" || ( echo "$1" >> "$2" && return 10 )
+}
+
+# General settings
+ensure_line_in_file "export VISUAL=nvim" ~/.profile #&& echo "export EDITOR=\$VISUAL" >> ~/.profile
+status=$?
+if [[ $status -eq 10 ]]; then
+    # if added VISUAL=nvim also add EDITOR=VISUAL after
+    echo "export EDITOR=\$VISUAL" >> ~/.profile
+else
+    # check VISUAL=EDITOR set
+    ensure_line_in_file "export EDITOR=\$VISUAL" ~/.profile
+fi
 
 # Set up gnome-terminal
 ./gnome-terminal/gnome-terminal-install.sh
@@ -15,7 +31,7 @@ ln -s -f $DIR/tmux/.tmux.conf.local ~
 TMUXX='alias tmuxx="tmux new-session -A -s"'
 grep -q "$TMUXX" ~/.bashrc || echo "$TMUXX" >> ~/.bashrc
 
-# Setup neovim
+# Set up neovim
 mkdir -p ~/.config/nvim
 ln -s -f $DIR/neovim/init.vim ~/.config/nvim/
 DEIN_DIR=~/.local/share/nvim/dein/repos/github.com/Shougo
@@ -24,7 +40,7 @@ mkdir -p $DEIN_DIR
 ln -s $DIR/neovim/dein.vim $DEIN_DIR
 echo "To get neovim up and running open it and run :call dein#install()"
 
-# Setup zsh
+# Set up zsh
 ./zsh/zsh_install.py
 
 # Fonts
@@ -32,7 +48,7 @@ mkdir -p ~/.fonts
 rm -rf ~/.fonts/nerd-fonts || true
 ln -s $DIR/fonts/nerd-fonts ~/.fonts/
 
-# Setup Micro
+# Set up Micro
 rm -rf ~/.config/micro || true
 ln -s $DIR/micro ~/.config
 
