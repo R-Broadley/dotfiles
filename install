@@ -22,8 +22,12 @@ else
     ensure_line_in_file "export EDITOR=\$VISUAL" ~/.profile
 fi
 
-# Set up gnome-terminal
-./gnome-terminal/gnome-terminal-install.sh
+# Set up gnome-terminal (if dconf installed)
+command -v dconf >/dev/null 2>&1
+status=$?
+if [[ $status -eq 0 ]]; then
+    ./gnome-terminal/gnome-terminal-install.sh
+fi
 
 # Set up tmux
 ln -s -f $DIR/tmux/.tmux.conf ~
