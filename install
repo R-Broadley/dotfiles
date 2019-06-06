@@ -6,7 +6,10 @@ git submodule update --init --recursive
 # Get path of repo directory (the one containing this script)
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-# Setup tmux
+# Set up gnome-terminal
+./gnome-terminal/gnome-terminal-install.sh
+
+# Set up tmux
 ln -s -f $DIR/tmux/.tmux.conf ~
 ln -s -f $DIR/tmux/.tmux.conf.local ~
 TMUXX='alias tmuxx="tmux new-session -A -s"'
