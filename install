@@ -48,9 +48,5 @@ mkdir -p ~/.fonts
 rm -rf ~/.fonts/nerd-fonts || true
 ln -s $DIR/fonts/nerd-fonts ~/.fonts/
 
-# Set up Micro
-rm -rf ~/.config/micro || true
-ln -s $DIR/micro ~/.config
-
 # Default editorconfig (for any files below users home)
 ln -s -f $DIR/.editorconfig ~
