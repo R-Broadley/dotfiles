@@ -26,7 +26,7 @@ fi
 command -v dconf >/dev/null 2>&1
 status=$?
 if [[ $status -eq 0 ]]; then
-    ./gnome-terminal/gnome-terminal-install.sh
+    $DIR/gnome-terminal/gnome-terminal-install.sh
 fi
 
 # Set up tmux
@@ -45,7 +45,7 @@ ln -s $DIR/neovim/dein.vim $DEIN_DIR
 echo "To get neovim up and running open it and run :call dein#install()"
 
 # Set up zsh
-./zsh/zsh_install.py
+$DIR/zsh/zsh_install.py
 
 # Fonts
 mkdir -p ~/.fonts
