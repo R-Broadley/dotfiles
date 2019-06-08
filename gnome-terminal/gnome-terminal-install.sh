@@ -11,7 +11,11 @@ PROFILE_LIST=$(dconf list /org/gnome/terminal/legacy/profiles:/ | grep "^:" | tr
 # If profile not in profiles list, add it
 ONEDARK_ID="ac7a6fc8-f5df-47f6-84fb-dbb4e30350eb"
 if [[ $PROFILE_LIST != *"$ONEDARK_ID"* ]]; then
-    PROFILE_LIST="$PROFILE_LIST,'$ONEDARK_ID'"
+    if [[ $PROFILE_LIST == "" ]]; then
+        PROFILE_LIST="'$ONEDARK_ID'"
+    else
+        PROFILE_LIST="$PROFILE_LIST,'$ONEDARK_ID'"
+    fi
 fi
 
 # Load template and set new profile list
