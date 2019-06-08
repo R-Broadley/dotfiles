@@ -26,3 +26,6 @@ default_section=FIRSTPARTY
 # Overrides for specific types
 [Makefile]
 indent_style = tab
+
+[*.sh]
+indent_style = tab
