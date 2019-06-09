@@ -64,6 +64,15 @@ autocmd FileType make setlocal noexpandtab
 set spell spelllang=en_gb
 
 
+" Light the Scroll Lock LED when in insert mode
+augroup ScrollLockLED
+    autocmd!
+    autocmd InsertEnter * :silent !xset  led named 'Scroll Lock'
+    autocmd InsertLeave * :silent !xset -led named 'Scroll Lock'
+    autocmd VimLeave    * :silent !xset -led named 'Scroll Lock'
+augroup END
+
+
 " Status Line
 set noshowmode
 let g:lightline = {
