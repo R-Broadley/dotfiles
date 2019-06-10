@@ -54,7 +54,6 @@ syntax enable
 set guioptions=M
 set mouse=a
 set number
-set splitbelow
 set breakindent
 set showbreak=->
 set expandtab
@@ -62,7 +61,9 @@ set expandtab
 autocmd FileType make setlocal noexpandtab
 " Spelling
 set spell spelllang=en_gb
-
+" Split directions
+set splitright
+set splitbelow
 
 " Light the Scroll Lock LED when in insert mode
 augroup ScrollLockLED
