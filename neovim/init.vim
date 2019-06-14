@@ -65,6 +65,9 @@ set spell spelllang=en_gb
 set splitright
 set splitbelow
 
+" Leave inset mode when focus lost
+autocmd FocusLost,TabLeave * stopinsert
+
 " Light the Scroll Lock LED when in insert mode
 augroup ScrollLockLED
     autocmd!
